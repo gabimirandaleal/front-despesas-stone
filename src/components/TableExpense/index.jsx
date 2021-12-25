@@ -20,7 +20,7 @@ function TableExpense({expense, setExpense}){
             {
                 expense.map((item, index)=>(
                     <div key={index} className="value">
-                        <span>{item.name.length > 15 ? item.name.substring(0,8)+"..." : item.name}</span>
+                        <span>{item.name.length > 11 ? item.name.substring(0,8)+"..." : item.name}</span>
                         <span>{item.amount}</span>
                         <span>{item.unitPrice}</span>
                         <AiFillCloseCircle onClick={() => removeExpense(item.id)}/>

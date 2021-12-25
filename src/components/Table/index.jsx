@@ -13,7 +13,7 @@ function Table({object}){
             {
                 object.map((item, index)=>(
                     <div key={index} className="value">
-                        <span>{item.name}</span>
+                        <span>{item.name.length > 11 ? item.name.substring(0,8)+"..." : item.name}</span>
                         <span>{item.price}</span>
                     </div>
                 ))
