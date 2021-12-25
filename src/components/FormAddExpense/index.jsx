@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button";
 import toast from 'react-hot-toast';
+import uuid from 'react-uuid'
 
 function FormAddNames({expense, setExpense, shareExpenses}) {
 
@@ -25,7 +26,8 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
   const onSubmitFunction = (data) => {
     data.unitPrice = data.unitPrice.replace(",", ".")
     data.amount = data.amount.replace(",", ".")
-    data = {...data, id: expense.length+1}
+    data = {...data, id: uuid()}
+    console.log(data.id)
     setExpense([...expense, data])
     reset();
     toast.success("Despesa inserida com sucesso")
