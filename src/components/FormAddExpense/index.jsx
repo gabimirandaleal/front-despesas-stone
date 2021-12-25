@@ -62,7 +62,7 @@ function FormAddNames({expense, setExpense, zerarExpense}) {
                 {...register("amount")}
               />
             <FormControl fullWidth margin="normal" >
-              <InputLabel htmlFor="outlined-adornment-amount">Preço</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-amount">Preço unitário</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-amount"
                 startAdornment={<InputAdornment position="start">R$</InputAdornment>}
