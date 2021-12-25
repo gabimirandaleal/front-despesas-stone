@@ -12,7 +12,7 @@ function Table({object}){
             </div>
             {
                 object.map((item, index)=>(
-                    <div key={index}>
+                    <div key={index} className="value">
                         <span>{item.name}</span>
                         <span>{item.price}</span>
                     </div>

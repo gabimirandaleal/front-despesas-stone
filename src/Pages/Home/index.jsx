@@ -5,6 +5,7 @@ import {Div} from "./style"
 import Table from "../../components/Table";
 import { useState } from "react";
 import { useEffect } from "react";
+import TableExpense from "../../components/TableExpense";
 function Home({}) {
     const [names, setNames] = useState([]);
     const [expense, setExpense] = useState([])
@@ -62,7 +63,10 @@ function Home({}) {
                 <FormAddNames shareExpenses={shareExpenses} names={names} setNames={setNames}/>
                 <FormAddExpense shareExpenses={shareExpenses} expense={expense} setExpense={setExpense} />
             </Div>
-            <Table object={object}></Table>
+            <Div>
+                <Table object={object}></Table>
+                <TableExpense expense={expense} setExpense={setExpense}></TableExpense>
+            </Div>
         </>
     )
 }

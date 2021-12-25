@@ -17,9 +17,16 @@ export const Container = styled.div`
    .value:hover{
       color: black;
    }
-   margin: 10px;
+   .name{
+      svg{display:none}
+   }
    span{
       width: 100%;
+   }
+   svg{
+      width: 100px;
+      heigth:100px;
+      cursor:pointer;
    }
 `;
 

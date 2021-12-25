@@ -10,7 +10,7 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome Obrigatório"),
-    amount: yup.string().required("Quantidade Obrigatória"),
+    amount: yup.string().required("Quantidade Obrigatória").matches(/^(?:[1-9](?:[\d]{0,2}|[\d]+)|0)(?:,[\d]{0,4})?$/),
     unitPrice: yup.string().required("Preço5 Obrigatório").matches(/^(?:[1-9](?:[\d]{0,2}|[\d]+)|0)(?:,[\d]{0,2})?$/)
   });
 
@@ -24,7 +24,8 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
 
   const onSubmitFunction = (data) => {
     data.unitPrice = data.unitPrice.replace(",", ".")
-    data = {...data}
+    data.amount = data.amount.replace(",", ".")
+    data = {...data, id: expense.length+1}
     setExpense([...expense, data])
     reset();
     toast.success("Despesa inserida com sucesso")
@@ -48,7 +49,6 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
                 margin="normal"
                 fullWidth
                 label="Quantidade"
-                type="number"
                 inputProps={{ min: 0 }}
                 variant="outlined"
                 error={!!errors.amount?.message}
