@@ -6,6 +6,7 @@ export const Container = styled.div`
    max-width:500px;
    padding: 10px;
    color: white;
+   border-radius: 5px;
    div{
     display: flex;
     justify-content:space-between;
