@@ -7,7 +7,7 @@ import Button from "../Button";
 import toast from 'react-hot-toast';
 import { useState } from "react";
 
-function FormAddNames({names, setNames, shareExpenses}) {
+function FormAddNames({names, setNames, zerarNames}) {
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome Obrigatório")
   });
@@ -21,6 +21,7 @@ function FormAddNames({names, setNames, shareExpenses}) {
   });
 
   const onSubmitFunction = (data) => {
+    localStorage.setItem(`@Names-stone`, JSON.stringify([...names, data]))
     setNames([...names, data]);
     reset();
     toast.success("Nome inserido com sucesso");
@@ -39,6 +40,7 @@ function FormAddNames({names, setNames, shareExpenses}) {
                 {...register("name")}
             />
             <Button type="submit" text={"Adicionar Nome"}></Button>
+            <Button className="button" onclick={zerarNames} text={"Remover nomes"}></Button>
         </Form>
       </Div>
  

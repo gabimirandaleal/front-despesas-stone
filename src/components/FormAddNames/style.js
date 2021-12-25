@@ -37,5 +37,9 @@ export const Form = styled.form`
     font-weight:bold;
     font-size:20px;
   }
+  .button{
+    background: #D4D5D6;
+    color: black;
+  }
 `;
 

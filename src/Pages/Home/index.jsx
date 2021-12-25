@@ -7,11 +7,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import TableExpense from "../../components/TableExpense";
 function Home({}) {
-    const [names, setNames] = useState([]);
-    const [expense, setExpense] = useState([])
-    const [object, setObject] = useState([]);
+    const [names, setNames] = useState(JSON.parse(localStorage.getItem(`@Names-stone`)) || []);
+    const [expense, setExpense] = useState(JSON.parse(localStorage.getItem(`@Despesa-stone`)) || [])
+    const [object, setObject] = useState(JSON.parse(localStorage.getItem(`@Dicionario-stone`)) || []);
     const [atualizar, setAtualizar] = useState(false)
-    const [priceToPerson, setPriceToPerson] = useState(0)
+    
     const totalExpense = () =>{
         if(expense.length !== 0){
             return expense.reduce(function(acumulador, valorAtual) {
@@ -21,12 +21,29 @@ function Home({}) {
     }
 
     useEffect(() => {
+        setNames([...names])
+        shareExpenses()
+    }, []);
+
+    useEffect(() => {
       shareExpenses() 
     }, [names]);
 
     useEffect(() => {
         aux();
     }, [expense, atualizar]);
+
+    function zerarNames(){
+        localStorage.setItem(`@Dicionario-stone`, JSON.stringify([]))
+        localStorage.setItem(`@Names-stone`, JSON.stringify([]))
+        setObject([])
+        setNames([])
+    }
+
+    function zerarExpense(){
+        localStorage.setItem(`@Despesa-stone`, JSON.stringify([]))
+        setExpense([])
+    }
     
     
     function aux(){
@@ -42,6 +59,8 @@ function Home({}) {
             }
         }
         setObject([...object])
+        localStorage.setItem(`@Dicionario-stone`, JSON.stringify([...object]))
+
     }
 
 
@@ -51,6 +70,7 @@ function Home({}) {
               
         names.map((item, index) =>{
             setObject([...object, {name: item.name, price: totalToPay}])
+            localStorage.setItem(`@Dicionario-stone`, JSON.stringify([...object, {name: item.name, price: totalToPay}]))
         })
         setAtualizar(!atualizar)
     }
@@ -60,8 +80,8 @@ function Home({}) {
         <>
             <Header/>
             <Div>
-                <FormAddNames shareExpenses={shareExpenses} names={names} setNames={setNames}/>
-                <FormAddExpense shareExpenses={shareExpenses} expense={expense} setExpense={setExpense} />
+                <FormAddNames zerarNames={zerarNames} names={names} setNames={setNames}/>
+                <FormAddExpense zerarExpense={zerarExpense} shareExpenses={shareExpenses} expense={expense} setExpense={setExpense} />
             </Div>
             <Div>
                 <Table object={object}></Table>

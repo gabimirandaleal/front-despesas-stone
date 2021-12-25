@@ -4,6 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 function TableExpense({expense, setExpense}){
     const removeExpense = (id) =>{
         setExpense(expense.filter((item) => item.id !== id))
+        localStorage.setItem(`@Despesa-stone`, JSON.stringify([...expense.filter((item) => item.id !== id)]))
     }
 
     return(

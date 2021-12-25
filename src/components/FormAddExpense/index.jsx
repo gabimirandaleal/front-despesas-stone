@@ -7,7 +7,7 @@ import Button from "../Button";
 import toast from 'react-hot-toast';
 import uuid from 'react-uuid'
 
-function FormAddNames({expense, setExpense, shareExpenses}) {
+function FormAddNames({expense, setExpense, zerarExpense}) {
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome Obrigatório"),
@@ -27,6 +27,7 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
     data.unitPrice = data.unitPrice.replace(",", ".")
     data.amount = data.amount.replace(",", ".")
     data = {...data, id: uuid()}
+    localStorage.setItem(`@Despesa-stone`, JSON.stringify([...expense, data]))
     setExpense([...expense, data])
     reset();
     toast.success("Despesa inserida com sucesso")
@@ -66,6 +67,7 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
               />
             </FormControl>
             <Button type="submit" text={"Adicionar despesa"}></Button>
+            <Button className="button" onclick={zerarExpense} text={"Remover despesas"}></Button>
         </Form>
       </Div>
   );
