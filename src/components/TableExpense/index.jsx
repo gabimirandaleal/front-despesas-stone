@@ -1,4 +1,4 @@
-import { Container, Div} from "./style"
+import { Container, Div, DivItem} from "./style"
 import { AiFillCloseCircle } from "react-icons/ai";
 
 function TableExpense({expense, setExpense}){
@@ -11,29 +11,39 @@ function TableExpense({expense, setExpense}){
         <Div>
         <Container>
             <div>
-                <span>Despesa(nome)</span>
-                <span>Quantidade </span>
-                <span>Preço unitário </span>
-                {  
-                    expense.length > 0 && 
-                    <>
-                    <span className="name">
-                    <AiFillCloseCircle />
-                    </span>
-                    </>
-                }
-                
+                <DivItem>
+                    <span>Despesa(nome)</span>
+                    {
+                        expense.map((item, index)=>(
+                            <div key={index}>
+                                <span>{item.name.length > 11 ? item.name.substring(0,8)+"..." : item.name}</span>
+                            </div>
+                        ))
+                    }
+                </DivItem>
+                <DivItem>
+                    <span>Quantidade </span>
+                    {
+                        expense.map((item, index)=>(
+                            <div key={index}>
+                                <span>{item.amount}</span>
+                            </div>
+                        ))
+                    }
+                </DivItem>
+                <DivItem>
+                    <span>Preço unitário </span>
+                    {
+                        expense.map((item, index)=>(
+                            <div key={index}>
+                                <span  className="priceUnit">{item.unitPrice}</span>
+                                <AiFillCloseCircle onClick={() => removeExpense(item.id)}/>
+                            </div>
+                        ))
+                    }
+                </DivItem>
             </div>
-            {
-                expense.map((item, index)=>(
-                    <div key={index} className="value">
-                        <span>{item.name.length > 11 ? item.name.substring(0,8)+"..." : item.name}</span>
-                        <span>{item.amount}</span>
-                        <span>{item.unitPrice}</span>
-                        <AiFillCloseCircle onClick={() => removeExpense(item.id)}/>
-                    </div>
-                ))
-            }
+           
         </Container>
         </Div>
     )

@@ -65,8 +65,10 @@ function Home({}) {
         const totalToPay = (totalExpense()/names.length).toFixed(2) 
               
         names.map((item, index) =>{
-            setObject([...object, {name: item.name, price: totalToPay}])
-            localStorage.setItem(`@Dicionario-stone`, JSON.stringify([...object, {name: item.name, price: totalToPay}]))
+            if(object.filter((itemO) => itemO.id === item.id).length === 0){
+                setObject([...object, {name: item.name, price: totalToPay, id: item.id}])
+                localStorage.setItem(`@Dicionario-stone`, JSON.stringify([...object, {name: item.name, price: totalToPay, id: item.id}]))
+            }
         })
         setAtualizar(!atualizar)
     }
@@ -80,7 +82,7 @@ function Home({}) {
                 <FormAddExpense zerarExpense={zerarExpense} shareExpenses={shareExpenses} expense={expense} setExpense={setExpense} />
             </Div>
             <Div>
-                <Table object={object}></Table>
+                <Table object={object} shareExpenses={shareExpenses} setObject={setObject} names={names} setNames={setNames}></Table>
                 <TableExpense expense={expense} setExpense={setExpense}></TableExpense>
             </Div>
         </>

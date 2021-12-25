@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button";
 import toast from 'react-hot-toast';
-import { useState } from "react";
+import uuid from "react-uuid";
 
 function FormAddNames({names, setNames, zerarNames}) {
   const formSchema = yup.object().shape({
@@ -21,6 +21,8 @@ function FormAddNames({names, setNames, zerarNames}) {
   });
 
   const onSubmitFunction = (data) => {
+    data = {...data, id: uuid()}
+    console.log(data)
     localStorage.setItem(`@Names-stone`, JSON.stringify([...names, data]))
     setNames([...names, data]);
     reset();
