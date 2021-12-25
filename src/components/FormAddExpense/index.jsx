@@ -27,7 +27,6 @@ function FormAddNames({expense, setExpense, shareExpenses}) {
     data.unitPrice = data.unitPrice.replace(",", ".")
     data.amount = data.amount.replace(",", ".")
     data = {...data, id: uuid()}
-    console.log(data.id)
     setExpense([...expense, data])
     reset();
     toast.success("Despesa inserida com sucesso")
