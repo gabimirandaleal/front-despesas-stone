@@ -33,6 +33,11 @@ function FormAddNames({expense, setExpense, zerarExpense}) {
     toast.success("Despesa inserida com sucesso")
   };
 
+  const resetInput = () =>{
+    reset();
+    zerarExpense();
+  }
+
   return (
     
       <Div>
@@ -61,13 +66,13 @@ function FormAddNames({expense, setExpense, zerarExpense}) {
               <OutlinedInput
                 id="outlined-adornment-amount"
                 startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-                label="Preço"
+                label="Preço Unitário"
                 error={!!errors.unitPrice?.message}
                 {...register("unitPrice")}
               />
             </FormControl>
             <Button type="submit" text={"Adicionar despesa"}></Button>
-            <Button className="button" onclick={zerarExpense} text={"Remover despesas"}></Button>
+            <Button className="button" onclick={resetInput} text={"Remover despesas"}></Button>
         </Form>
       </Div>
   );

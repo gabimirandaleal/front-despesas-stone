@@ -20,17 +20,13 @@ function Home({}) {
         }else{return 0}
     }
 
-    useEffect(() => {
-        setNames([...names])
-        shareExpenses()
-    }, []);
 
     useEffect(() => {
       shareExpenses() 
     }, [names]);
 
     useEffect(() => {
-        aux();
+        atualizarDados();
     }, [expense, atualizar]);
 
     function zerarNames(){
@@ -46,7 +42,7 @@ function Home({}) {
     }
     
     
-    function aux(){
+    function atualizarDados(){
         const totalToPay = (totalExpense()/names.length).toFixed(2)  
         object.map((item)=>{
             item.price = totalToPay

@@ -27,6 +27,12 @@ function FormAddNames({names, setNames, zerarNames}) {
     toast.success("Nome inserido com sucesso");
   };
 
+  const resetInput = () =>{
+    reset();
+    zerarNames();
+  }
+
+
   return (
       <Div>
         <Form onSubmit={handleSubmit(onSubmitFunction)}>
@@ -40,7 +46,7 @@ function FormAddNames({names, setNames, zerarNames}) {
                 {...register("name")}
             />
             <Button type="submit" text={"Adicionar Nome"}></Button>
-            <Button className="button" onclick={zerarNames} text={"Remover nomes"}></Button>
+            <Button className="button" onclick={resetInput} text={"Remover nomes"}></Button>
         </Form>
       </Div>
  
