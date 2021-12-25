@@ -13,9 +13,15 @@ function TableExpense({expense, setExpense}){
                 <span>Despesa(nome)</span>
                 <span>Quantidade </span>
                 <span>Preço unitário </span>
-                <span className="name">
+                {  
+                    expense.length > 0 && 
+                    <>
+                    <span className="name">
                     <AiFillCloseCircle />
-                </span>
+                    </span>
+                    </>
+                }
+                
             </div>
             {
                 expense.map((item, index)=>(
